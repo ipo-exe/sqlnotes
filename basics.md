@@ -246,6 +246,14 @@ SET
 ;
 ```
 
+### Rename table
+Syntax:
+```
+ALTER TABLE table_name
+RENAME TO new_table_name
+;
+```
+
 ### Move table to another schema
 
 Syntax:
@@ -351,7 +359,8 @@ ALTER VIEW old_name RENAME TO new_name
 Just like in tables, use the `COPY` statement to export the output dataframe to file.
 Syntax:
 ```
-COPY query_expression | view_name | view_name("column1", ...)
+COPY
+    (SELECT * FROM table_name | view_name)    
     TO 'C:\bin\output.txt'  -- string filepath 
     DELIMITER ';' -- specify delimiter
     CSV -- specify format
