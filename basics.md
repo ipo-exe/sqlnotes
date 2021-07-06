@@ -1,7 +1,10 @@
 #SQL basics
 by Ipo
+by Ipo
+Here are some notes to use PostgreSQL both from `psql` and `pgAdmin4`.
 
-Great ref: https://www.postgresqltutorial.com/
+A great ref: https://www.postgresqltutorial.com/
+
 
 ## Databases
 
