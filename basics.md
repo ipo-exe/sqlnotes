@@ -307,9 +307,9 @@ COPY user_accounts("user_name", "user_email", "user_cpf")
 ;
 ```
 
-##Queries and Views
+## Queries and Views
 
-###Query data with the`SELECT` statement
+### Query data with the`SELECT` statement
 Basic syntax of a `SELECT` statement:
 ```
 SELECT * | column1, column2, ... columnN -- * means ALL
@@ -327,7 +327,7 @@ SELECT "user_id", "user_name", "user_email"
 ;
 ```
 
-###Save a query in a View
+### Save a query in a View
 Syntax of view creation:
 ```
 CREATE VIEW view_name AS query
@@ -341,13 +341,13 @@ CREATE VIEW user_emails AS
         ORDER BY "user_name" ASC
 ;
 ```
-###Rename view
+### Rename view
 Syntax:
 ```
 ALTER VIEW old_name RENAME TO new_name
 ;
 ```
-###Export query or view to CSV file
+### Export query or view to CSV file
 Just like in tables, use the `COPY` statement to export the output dataframe to file.
 Syntax:
 ```
@@ -359,7 +359,7 @@ COPY query_expression | view_name | view_name("column1", ...)
 ;
 ```
 
-##Data aggregation
+## Data aggregation
 A special clause in the `SELECT` statement is the `GROUP BY` for data aggregation.
 Syntax:
 ```
