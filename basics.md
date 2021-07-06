@@ -246,6 +246,16 @@ SET
 ;
 ```
 
+### Move table to another schema
+
+Syntax:
+```
+ALTER TABLE table_name
+    SET SCHEMA another_schema
+;
+```
+
+
 ### Import data from a CSV file
 Files may be in `.csv` or `.txt` extension.
 The syntax:
@@ -297,6 +307,110 @@ COPY user_accounts("user_name", "user_email", "user_cpf")
 ;
 ```
 
+##Queries and Views
+
+###Query data with the`SELECT` statement
+Basic syntax of a `SELECT` statement:
+```
+SELECT * | column1, column2, ... columnN -- * means ALL
+    FROM table_name 
+    [WHERE] condition_expression
+    [ORDER BY] column_name ASC | DESC
+    [LIMIT] n -- subset of n rows
+;
+```
+Example:
+```
+SELECT "user_id", "user_name", "user_email"
+    FROM user_accounts
+    ORDER BY "user_name" ASC
+;
+```
+
+###Save a query in a View
+Syntax of view creation:
+```
+CREATE VIEW view_name AS query
+;
+```
+Example:
+```
+CREATE VIEW user_emails AS 
+    SELECT "user_id", "user_name", "user_email"
+        FROM user_accounts
+        ORDER BY "user_name" ASC
+;
+```
+###Rename view
+Syntax:
+```
+ALTER VIEW old_name RENAME TO new_name
+;
+```
+###Export query or view to CSV file
+Just like in tables, use the `COPY` statement to export the output dataframe to file.
+Syntax:
+```
+COPY query_expression | view_name | view_name("column1", ...)
+    TO 'C:\bin\output.txt'  -- string filepath 
+    DELIMITER ';' -- specify delimiter
+    CSV -- specify format
+    HEADER -- include headers to file
+;
+```
+
+##Data aggregation
+A special clause in the `SELECT` statement is the `GROUP BY` for data aggregation.
+Syntax:
+```
+SELECT 
+   column_1, 
+   column_2,
+   ...,
+   aggregate_function(column_3) -- call and agg function on a column
+FROM 
+   table_name
+GROUP BY 
+   column_1, -- incremental priority of aggregation
+   column_2,
+   ...
+;
+```
+Some standard agg functions available:
+* AVG() – return the average value.
+* COUNT() – return the number of values.
+* MAX() – return the maximum value. 
+* MIN() – return the minimum value. 
+* SUM() – return the sum of all or distinct values.
+
+## Joining data
+Great ref: https://www.postgresqltutorial.com/postgresql-joins/
+
+Dataframes, such as tables, views and on-the-fly queries can be joined **side-by-side** in four ways:
+* `INNER JOIN`, which is the intersection of both dataframes, only matching rows;
+* `LEFT JOIN`, which keeps all rows from the left dataframe;
+* `RIGHT JOIN`, which keeps all rows from the right dataframe, and;
+* `FULL JOIN`, which keeps all rows from both dataframes.
+
+Apllying the `WHERE` clause to the joins leads to variations. 
+
+Syntax:
+```
+SELECT
+    table_a.column1,
+    table_a.key,
+    table_b.column1,
+    table_b.key
+FROM
+    table_a -- left dataframe
+INNER JOIN | LEFT JOIN | RIGHT JOIN | FULL JOIN
+    table_b  -- right dataframe
+    ON 
+    table_a.key = table_b.key;
+[WHERE] -- optional conditioning
+    table_a.key IS NULL | table_b.key IS NULL | table_a.key IS NULL OR table_b.key IS NULL
+;
+```
 
 
 
