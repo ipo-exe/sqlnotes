@@ -1,10 +1,23 @@
-#SQL basics
+#PostgreSQL basics
 by Ipo
-by Ipo
+
 Here are some notes to use PostgreSQL both from `psql` and `pgAdmin4`.
 
 A great ref: https://www.postgresqltutorial.com/
 
+## The `psql` terminal tool
+The `psql` tool is a terminal tool that connect and interact with postgresql databases. 
+To use it in `windows` you must navigate (with the `cd..` command) to the `bin` directory of postgresql 
+located in program files and authenticate:
+```
+C:\Program Files\PostgreSQL\##(version)\bin > psql -U postgres -database_name
+Password for postgres:
+psql version ##
+(some warnings may appear here)
+Type "help" for help.
+
+database_name=# (this is the interactive terminal)
+```
 
 ## Databases
 
