@@ -90,6 +90,14 @@ You may want to back-up only database objects but not data itself. This can be d
 C:\Program Files\PostgreSQL\13\bin > pg_dump -U postgres -W -F p -s database > C:\bin\backup_schema.sql
 ```
 
+### Backing-up only database data 
+Alternatively, you may want to back-up only database data. This can be done with the `-a` or `--data-only` option.
+```
+C:\Program Files\PostgreSQL\13\bin > pg_dump -U postgres -W -F p -a database > C:\bin\backup_data.sql
+```
+
+
+
 ## Schemas
 There are some scenarios that you want to use schemas:
 * Schemas allow you to organize database objects e.g., tables into logical groups to make them more manageable.
