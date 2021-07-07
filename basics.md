@@ -67,6 +67,29 @@ DROP DATABASE [IF EXISTS] database_name
 ;
 ```
 
+### Backing-up an existing database
+There is no sql statement for backup. You must use the `pg_dump` terminal tool.
+For `windows`, use the terminal to go to the `bin` of postgreSQL directory and execute the following command:
+```
+C:\Program Files\PostgreSQL\13\bin > pg_dump -U postgres -W -F p database > C:\bin\backup.sql
+```
+
+`-U postgres`:  specifies the user to connect to the PostgreSQL database server. We used the postgres in this example.
+
+`-W`:  forces `pg_dump` to prompt for the password before connecting to the PostgreSQL database server. After you hit enter, pg_dump will prompt for the password of postgres user.
+
+`-F`: specifies the output file format that can be one of the following:
+* `c`: custom-format archive file format
+* `d`: directory-format archive
+* `t`: tar
+* `p`: plain-text SQL script file.
+
+### Backing-up only database schema not data
+You may want to back-up only database objects but not data itself. This can be done with the `-s` or `--schema-only` option.
+```
+C:\Program Files\PostgreSQL\13\bin > pg_dump -U postgres -W -F p -s database > C:\bin\backup_schema.sql
+```
+
 ## Schemas
 There are some scenarios that you want to use schemas:
 * Schemas allow you to organize database objects e.g., tables into logical groups to make them more manageable.
