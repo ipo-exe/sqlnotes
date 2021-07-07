@@ -193,6 +193,14 @@ ALTER TABLE user_accounts
 ;
 ```
 
+### Rename column
+Syntax:
+```
+ALTER TABLE table_name 
+RENAME COLUMN column_name TO new_column_name
+;
+```
+
 ### Edit all column values
 
 The syntax is the same of record editing, but without the `WHERE` clause.
