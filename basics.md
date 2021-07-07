@@ -68,7 +68,10 @@ DROP DATABASE [IF EXISTS] database_name
 ```
 
 ### Backing-up an existing database
-There is no sql statement for backup. You must use the `pg_dump` terminal tool.
+There is no sql statement for backup. You must use the `pg_dump` terminal tool. 
+
+More on: https://www.postgresql.org/docs/current/app-pgdump.html
+
 For `windows`, use the terminal to go to the `bin` of postgreSQL directory and execute the following command:
 ```
 C:\Program Files\PostgreSQL\13\bin > pg_dump -U postgres -W -F p database > C:\bin\backup.sql
@@ -96,7 +99,36 @@ Alternatively, you may want to back-up only database data. This can be done with
 C:\Program Files\PostgreSQL\13\bin > pg_dump -U postgres -W -F p -a database > C:\bin\backup_data.sql
 ```
 
+### Restoring a database from a backup file
 
+The opposite of backup is to restore the database from the backup file. 
+The process is similar to backup, but the terminal tool is the `pg_restore`.
+
+More on: https://www.postgresql.org/docs/current/app-pgrestore.html
+
+Here there area some basic import options:
+* to restore objects and data into an existing database (destination database), or;
+* to restore objects and data into a new database.
+
+To restore into a destination database:
+```
+pg_restore --dbname=dest_database --create --verbose C:\bin\backup.sql
+```
+> Warning! Restoring is **not** a version control. It completely substitutes existing objects and data. 
+
+The second option needs to create a new database first with the sql statement:
+```
+CREATE DATABASE db_name TEMPLATE template0
+;
+```
+or from the `psql` shell:
+```
+psql createdb -T template0 new_dbname
+```
+Then, using `pg_restore`:
+```
+pg_restore --dbname=new_dbname --verbose C:\bin\backup.sql
+```
 
 ## Schemas
 There are some scenarios that you want to use schemas:
