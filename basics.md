@@ -106,15 +106,16 @@ The process is similar to backup, but the terminal tool is the `pg_restore`.
 
 More on: https://www.postgresql.org/docs/current/app-pgrestore.html
 
-Here there area some basic import options:
+Here there are some basic import options:
 * to restore objects and data into an existing database (destination database), or;
 * to restore objects and data into a new database.
 
 To restore into a destination database:
 ```
-pg_restore --dbname=dest_database --create --verbose C:\bin\backup.sql
+pg_restore -U postgres -W --dbname=dest_database --create --verbose C:\bin\backup.tar
 ```
-> Warning! Restoring is **not** a version control. It completely substitutes existing objects and data. 
+> Warning! Restoring is **not** a version control. It completely substitutes existing objects and data.
+> Also: restore does not allows for plain text.
 
 The second option needs to create a new database first with the sql statement:
 ```
@@ -127,7 +128,7 @@ psql createdb -T template0 new_dbname
 ```
 Then, using `pg_restore`:
 ```
-pg_restore --dbname=new_dbname --verbose C:\bin\backup.sql
+pg_restore -U postgres -W --dbname=new_dbname --verbose C:\bin\backup.tar
 ```
 
 ## Schemas
