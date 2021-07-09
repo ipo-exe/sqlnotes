@@ -249,7 +249,11 @@ WHERE
 RETURNING *
 ;
 ```
-
+To remove all records, leaving a blank table:
+```
+DELETE FROM table_name
+;
+```
 
 ### Adding new column to table
 
@@ -400,6 +404,14 @@ COPY user_accounts("user_name", "user_email", "user_cpf")
 ;
 ```
 
+## Indexing a table
+
+Create a multi-column index object to speed-up queries:
+```
+CREATE INDEX idx_fields_names 
+ON table_name (main_field, secondary_field, ...)
+;
+```
 ## Queries and Views
 
 ### Query data with the`SELECT` statement
