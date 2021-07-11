@@ -452,6 +452,16 @@ Syntax:
 ALTER VIEW old_name RENAME TO new_name
 ;
 ```
+
+### Create table from query
+This is not as efficient as views (it occupies disk) but is useful to manage data.
+```
+CREATE TABLE new_table_name AS 
+    query
+;
+```
+
+
 ### Export query or view to CSV file
 Just like in tables, use the `COPY` statement to export the output dataframe to file.
 Syntax:
